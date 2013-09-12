@@ -9,8 +9,6 @@ package de.HomerBond005.RedstoneCommand;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.milkbowl.vault.permission.Permission;
-import org.anjocaido.groupmanager.GroupManager;
-import org.anjocaido.groupmanager.permissions.AnjoPermissionsHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -33,7 +31,6 @@ public class PermissionsChecker{
 	int permSys;
 	PermissionManager pexmanager;
     PermissionsPlugin pbplugin;
-    GroupManager groupManager;
     Permission vault;
     boolean usePerm;
     Logger log;
@@ -59,10 +56,6 @@ public class PermissionsChecker{
     		}else if(pm.getPlugin("bPermissions") != null){
     			log.log(Level.INFO, "Using bPermissions!");
     			permSys = 3;
-    		}else if(pm.getPlugin("GroupManager") != null){
-    			log.log(Level.INFO, "Using GroupManager!");
-    			groupManager = (GroupManager)pm.getPlugin("GroupManager");
-    			permSys = 4;
     		}else{
     			log.log(Level.INFO, "Using Bukkit Permissions!");
     			permSys = 1;
@@ -81,12 +74,6 @@ public class PermissionsChecker{
     		return pexmanager.has(player, perm);
     	}else if(permSys == 3){
     		return ApiLayer.hasPermission(player.getWorld().getName(), CalculableType.USER, player.getName(), perm);
-    	}else if(permSys == 4){
-    		AnjoPermissionsHandler holder = groupManager.getWorldsHolder().getWorldPermissions(player);
-			if (holder == null) {
-	            return false;
-	        }
-	        return holder.has(player, perm);
     	}else if(permSys == 5){
     		return vault.has(player, perm);
     	}else{

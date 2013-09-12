@@ -202,7 +202,7 @@ public class RedstoneCommand extends JavaPlugin {
 		RSC rsc = rscs.get(name);
 		if (rsc.isON())
 			return ChatColor.GREEN + "The RSC " + ChatColor.GOLD + name + ChatColor.GREEN + " is already on.";
-		rsc.turnON();
+		rsc.tur nON();
 		return ChatColor.GREEN + "Successfully turned on RSC named " + ChatColor.GOLD + name;
 	}
 
